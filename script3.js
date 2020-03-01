@@ -26,12 +26,10 @@ function generatePasswordOptions() {
 // charoptions variable assigned empty array for pushing password criteria into
 var charOptions = [];
 
-// Do this for every one of them
+// Create functions that hold array for each criteria category
 function pickUpper() {
     return ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 }
-
-
 
 function pickLower() {
     return ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
@@ -47,7 +45,7 @@ function pickNums() {
 
 
 
-// create new function with for loop to loop through array based on password length from user input
+// this function holds all user options and applies if statements to each criteria to push choices into charOptions array
 function generatePassword() {
     generatePasswordOptions();
     if(upperCase) {
@@ -62,17 +60,18 @@ function generatePassword() {
     if(num) {
         charOptions = charOptions.concat(pickNums());
     }
-    
+    // create new function with for loop to loop through array based on password length from user input
     console.log(charOptions);
     var password = ""
     for(var i = 0; i < passwordLength; i++) {
         password = password + charOptions[Math.floor(Math.random() * charOptions.length)];
     }
         console.log(password);
-    
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
 
     }
-    var password = document.querySelector("#password");
+    
     // need to get value of "password" variable to the textarea!
     // set result variable to textarea
 
