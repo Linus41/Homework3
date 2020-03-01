@@ -1,51 +1,79 @@
-// clicking generateBtn will call writePassword
-var generateBtn = document.querySelector("#generate");
-
-// Where do I put criteria prompts? Will put here for now
-var passwordLength = prompt("Select a number between 8 and 128");
-
-if (passwordLength >= 8 && passwordLength <= 128) {
-  var upperCase = confirm("Great! Would you like to use upper case letters in your password?")
-} else {
-  alert("Sorry, you must choose between 8 and 128!")
+// setting up variables to store values from prompts:
+var passwordLength = 0; 
+var upperCase;
+var lowerCase ;
+var specialChars;
+var num;
+// grabbing DOM object for generate Password line 22 html
+var button = document.querySelector("#generate");
+function generatePasswordConditions() {
+     passwordLength = parseInt(prompt("Select a number between 8 and 128"));
+     upperCase = confirm("Would you like to use upper case letters in your password?");
+     lowerCase = confirm("And how about lower case?");
+     specialChars = confirm("Great! And how about special characters?");
+     num = confirm("You're almost done! Would you like to include numbers in your password?");
+//     // if password length is out of bounds (two different if statements; less than 8 / greater than 128 use alert to tell them and use keyword return)
+// //    returning above conditions to an object, stores true or false, these results get stored in line 24 generatePassword variable
+//     var passwordOptionsOBJ = {
+//         length: passwordLength,
+//         hasuppercase: upperCase,
+//         haslowercase: lowerCase,
+//         hasspecialchars: specialChars,
+//         hasNum: num
+//     }
+//     // this function has been executed, we are coming out of the function, gives the outcome to line 26, acts as key "seals the deal"
+//     return passwordOptionsOBJ
 }
-if (upperCase) {
-  var lowerCase = confirm("Okay. And how about lower case letters?")
+function generatePassword() {
+   generatePasswordConditions();
+    //Hold my new password with all combinations user seelected 
+    var finalPassword = []; 
+    //based all the global vairabl;e bvalues 
+    if (lowerCase) {
+        // in case lower case true, call getrandom function getRandom(lowercaselist) line33
+        // new var randomLetter = getRandom(lowercaselist);
+        // finalPassword.push(randomLetter);  repeat this at end of each if statement using randomNum
+    }
+    //Special Chars 
+    //NUm Chars 
 }
-if (lowerCase) { 
-  var specialChars = confirm("Would you like to use special characters in your password?")
+// these arrays can be declared globally up// Array of numeric characters to be included in password
+var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+// Array of lowercase characters to be included in password
+var lowerCasedCharacters = [
+  'a',
+  'b',
+  'c',
+  'd',
+  'e',
+  'f',
+  'g',
+  'h',
+  'i',
+  'j',
+  'k',
+  'l',
+  'm',
+  'n',
+  'o',
+  'p',
+  'q',
+  'r',
+  's',
+  't',
+  'u',
+  'v',
+  'w',
+  'x',
+  'y',
+  'z'
+];
+function getRandom(inputArray){
+    // Function for getting a random element from an array
+  var randIndex = Math.floor(Math.random() * inputArray.length);
+  var randElement = inputArray[randIndex];
+  return randElement;
 }
-if (specialChars) {
-  confirm("Awesome! You're almost there! How about numbers?")
-}
-if (specialChars) {
-  alert("You did it! Now click on the red button to see your incredibly secure password!")
-}
-// the above prompts work! Hooray! Getting somewhere finallyyyyyyy
-
-
-// writePassword will call generatePassword, which puts the 
-// result on the page BUT generatePassword isn't implemented yet. 
-// I need to write generatePassword so that it asks user what they
-// want their password to look like; builds the password requested and
-// returns the password.
-
-// this is a function called writePassword. Its function body contains two variables: password and passwordText
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  // what is .value? Answer: The value property sets or returns the value of the value attribute of a text field.
-  passwordText.value = password;
-  // seems like i have to use the variables above (from the prompts) to generate and store random 
-  // letters, numbers, and special characters. Do I do that here in the function? How??
-
-}
-// what is document.bt? Nevermind I replaced it with this and tried to make it so when you access the 
-// class card-footer it will do something with the button within that div and then run generatePassword function??
-if (document.querySelector("#card-footer")) {
-  generatePassword();
-}
-  // Add event listener to generate button
-  // what is addEventListener?
-  // below is where the button gets clicked and calls the function writePassword
-  generateBtn.addEventListener("click", writePassword);
+// declare arrays using var lowercaselist = ['a', 'b', etc] 
+    // this is called immediately via line 4, calls generate password upon click
+    button.addEventListener("click", generatePassword);
